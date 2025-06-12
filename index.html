@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ovelhaliens</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="sketch.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');
+
+        body {
+            margin: 0;
+            overflow: hidden; 
+            font-family: "Knewave", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f9ff; 
+        }
+        canvas {
+            display: block;
+            border-radius: 1rem; 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 90vw; 
+            max-height: 90vh; 
+        }
+        .game-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            border-radius: 1.5rem;
+            background-color: #ffffff;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        .game-info {
+            position: absolute;
+            top: 1rem;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            color: #FFFFFF; 
+            font-weight: bold;
+            font-size: 1.25rem;
+            z-index: 10; 
+        }
+        .game-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2rem;
+            text-align: center;
+            border-radius: 1rem;
+            z-index: 20; 
+        }
+        .game-overlay button {
+            margin-top: 1.5rem;
+            padding: 0.75rem 2rem;
+            background-color: #22c55e;
+            color: white;
+            border: none;
+            border-radius: 0.75rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .game-overlay button:hover {
+            background-color: #16a34a; 
+            transform: translateY(-2px);
+        }
+        .game-overlay button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div id="p5-canvas-container"></div>
+        <div class="game-info">
+            <div id="score-display">Score: 0</div>
+            <div id="timer-display">Time: 60</div>
+        </div>
+        <div id="game-start-overlay" class="game-overlay">
+            <h1>Ovelhaliens</h1>
+            <button id="start-button">Start Game</button>
+        </div>
+        <div id="game-over-overlay" class="game-overlay hidden">
+            <h1>Game Over!</h1>
+            <p id="final-score">Your Score: 0</p>
+            <button id="restart-button">Play Again</button>
+        </div>
+</body>
+</html>
+
