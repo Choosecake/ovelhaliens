@@ -10,58 +10,60 @@ class Sheep {
         this.targetPos = createVector(random(50, width - 50), random(50, height - 150));
         this.speed = 4.5;
         this.woolHealth = floor(random(5, 10));
-		this.initialWoolHealth = this.woolHealth;
+        this.initialWoolHealth = this.woolHealth;
         this.isSheared = false;
         this.bodySize = SHEEP_BODY_SIZE;
+        this.displaySize = this.bodySize;
+        this.hoverScale = 1.1;
 
         this.flipped = random() < 0.5;
 
         this.sheepType = SHEEP_TYPES[floor(random(0, SHEEP_TYPES.length))];
         this.woolColor = this.assetLoader.getAsset('peloBrancoImg');
 
+        this.jumpHeight = 0;
+        this.initialJumpY = 0;
+        this.jumpVelocity = 0;
+        this.gravity = 0.3;
+        this.jumpForce = -7;
+        this.canJump = true;
+        this.timeSinceLastJump = 0;
+        this.jumpInterval = random(180, 300);
+
         switch (this.sheepType) {
             case 'padrao':
-                this.woolColor = this.assetLoader.getAsset('peloBrancoImg');
                 this.image = this.assetLoader.getAsset('ovelhaPadraoImg');
                 this.peladaImage = this.assetLoader.getAsset('ovelhaPeladaImg');
                 break;
             case 'alien':
-                this.woolColor = this.assetLoader.getAsset('peloVerdeImg');
                 this.image = this.assetLoader.getAsset('ovelhaAlienImg');
                 this.peladaImage = this.assetLoader.getAsset('alienPeladaImg');
                 break;
             case 'cafezinho':
-                this.woolColor = this.assetLoader.getAsset('peloCinzaImg');
                 this.image = this.assetLoader.getAsset('ovelhaCafezinhoImg');
                 this.peladaImage = this.assetLoader.getAsset('cafezinhoPeladaImg');
                 break;
             case 'cervejinha':
-                this.woolColor = this.assetLoader.getAsset('peloAmareloImg');
                 this.image = this.assetLoader.getAsset('ovelhaCervejinhaImg');
                 this.peladaImage = this.assetLoader.getAsset('ovelhaPeladaImg');
                 break;
             case 'cogumelita':
-                this.woolColor = this.assetLoader.getAsset('peloBrancoImg');
                 this.image = this.assetLoader.getAsset('ovelhaCogumelitaImg');
                 this.peladaImage = this.assetLoader.getAsset('ovelhaPeladaImg');
                 break;
             case 'docinho':
-                this.woolColor = this.assetLoader.getAsset('peloRosaImg');
                 this.image = this.assetLoader.getAsset('ovelhaDocinhoImg');
                 this.peladaImage = this.assetLoader.getAsset('ovelhaPeladaImg');
                 break;
             case 'moranguinho':
-                this.woolColor = this.assetLoader.getAsset('peloRosaImg');
                 this.image = this.assetLoader.getAsset('ovelhaMoranguinhoImg');
                 this.peladaImage = this.assetLoader.getAsset('moranguinhoPeladaImg');
                 break;
             case 'sorvetinho':
-                this.woolColor = this.assetLoader.getAsset('peloBrancoImg');
                 this.image = this.assetLoader.getAsset('ovelhaSorvetinhoImg');
                 this.peladaImage = this.assetLoader.getAsset('ovelhaPeladaImg');
                 break;
             case 'trevosa':
-                this.woolColor = this.assetLoader.getAsset('peloCinzaImg');
                 this.image = this.assetLoader.getAsset('ovelhaTrevosaImg');
                 this.peladaImage = this.assetLoader.getAsset('ovelhaPeladaImg');
                 break;
@@ -70,16 +72,16 @@ class Sheep {
 
     display() {
         push();
-        translate(this.pos.x, this.pos.y);
+        translate(this.pos.x, this.pos.y + this.jumpHeight);
 
         if (this.flipped) {
             scale(-1, 1);
         }
 
         if (this.isSheared) {
-            image(this.peladaImage, -this.bodySize / 2, -this.bodySize / 2, this.bodySize, this.bodySize);
+            image(this.peladaImage, -this.displaySize / 2, -this.displaySize / 2, this.displaySize, this.displaySize);
         } else {
-            image(this.image, -this.bodySize / 2, -this.bodySize / 2, this.bodySize, this.bodySize);
+            image(this.image, -this.displaySize / 2, -this.displaySize / 2, this.displaySize, this.displaySize);
         }
 
         pop();
@@ -93,12 +95,32 @@ class Sheep {
             } else {
                 this.pos = this.targetPos;
                 this.state = ACTIVE;
+                this.initialJumpY = this.pos.y;
+            }
+        } else if (this.state === ACTIVE || this.state === JUMPING_UP || this.state === JUMPING_DOWN) {
+            this.timeSinceLastJump++;
+            if (this.canJump && this.timeSinceLastJump >= this.jumpInterval) {
+                this.startJump();
+                this.timeSinceLastJump = 0;
+                this.jumpInterval = random(180, 300);
+            }
+
+            if (this.state === JUMPING_UP || this.state === JUMPING_DOWN) {
+                this.jumpVelocity += this.gravity;
+                this.jumpHeight += this.jumpVelocity;
+
+                if (this.jumpHeight >= 0) {
+                    this.jumpHeight = 0;
+                    this.jumpVelocity = 0;
+                    this.state = ACTIVE;
+                    this.canJump = true;
+                }
             }
         } else if (this.state === LEAVING) {
             if (this.flipped) {
                 this.targetPos = createVector(width + this.bodySize * 2, this.pos.y);
             } else {
-                this.targetPos = createVector(-this.bodySize * 2, this.pos.y); 
+                this.targetPos = createVector(-this.bodySize * 2, this.pos.y);
             }
 
             let distance = p5.Vector.dist(this.pos, this.targetPos);
@@ -111,15 +133,43 @@ class Sheep {
         return false;
     }
 
+    startJump() {
+        if (this.state === ACTIVE) {
+            this.jumpVelocity = this.jumpForce;
+            this.canJump = false;
+            this.state = JUMPING_UP;
+        }
+    }
+
     shear() {
         if (this.woolHealth > 0 && this.state === ACTIVE) {
             this.woolHealth--;
+            spawnFallingWool(this.pos.x, this.pos.y + this.jumpHeight, this.woolColor, this.bodySize); 
             if (this.woolHealth <= 0) {
                 this.isSheared = true;
                 this.state = LEAVING;
-				return true;
+                this.displaySize = this.bodySize;
+                return true;
             }
         }
-		return false;
+        return false;
+    }
+
+    isMouseOver() {
+        let halfSize = this.displaySize / 2;
+        let left = this.pos.x - halfSize;
+        let right = this.pos.x + halfSize;
+        let top = this.pos.y - halfSize + this.jumpHeight;
+        let bottom = this.pos.y + halfSize + this.jumpHeight;
+
+        return mouseX > left && mouseX < right && mouseY > top && mouseY < bottom;
+    }
+
+    handleHover() {
+        let targetSize = this.bodySize;
+        if (this.isMouseOver()) {
+            targetSize = this.bodySize * this.hoverScale;
+        }
+        this.displaySize = lerp(this.displaySize, targetSize, 0.1);
     }
 }

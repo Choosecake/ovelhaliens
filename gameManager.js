@@ -1,6 +1,6 @@
 class GameManager {
-	constructor(assetLoader) { 
-        this.assetLoader = assetLoader; 
+    constructor(assetLoader) {
+        this.assetLoader = assetLoader;
         this.score = 0;
         this.timer = INITIAL_TIMER;
         this.gameStarted = false;
@@ -79,17 +79,21 @@ class GameManager {
     }
 
     updateGame() {
-		if (this.gameStarted && !this.gameOver) {
+        if (this.gameStarted && !this.gameOver) {
             for (let i = this.sheepArray.length - 1; i >= 0; i--) {
-                if (this.sheepArray[i].update()) {
+                let currentSheep = this.sheepArray[i];
+                if (currentSheep.state === ACTIVE) {
+                    currentSheep.handleHover();
+                }
+                if (currentSheep.update()) {
                     this.sheepArray.splice(i, 1);
                 } else {
-                    this.sheepArray[i].display();
+                    currentSheep.display();
                 }
             }
 
             if (this.sheepArray.length < MAX_SHEEP && frameCount % 60 === 0) {
-                this.sheepArray.push(new Sheep(this.assetLoader)); 
+                this.sheepArray.push(new Sheep(this.assetLoader));
             }
         } else if (this.gameOver) {
             for (let i = 0; i < this.sheepArray.length; i++) {
@@ -98,7 +102,7 @@ class GameManager {
         }
     }
 
-	handleMouseClick(mouseX, mouseY) {
+    handleMouseClick(mouseX, mouseY) {
         if (!this.gameStarted || this.gameOver) return;
 
         for (let i = 0; i < this.sheepArray.length; i++) {
@@ -112,3 +116,4 @@ class GameManager {
         }
     }
 }
+

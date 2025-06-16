@@ -19,12 +19,7 @@ class AssetLoader {
         this.assets.alienPeladaImg = loadImage('assets/alienPelada.png');
         this.assets.cafezinhoPeladaImg = loadImage('assets/cafezinhoPelada.png');
         this.assets.moranguinhoPeladaImg = loadImage('assets/moranguinhoPelada.png');
-        this.assets.peloAmareloImg = loadImage('assets/peloAmarelo.png');
-        this.assets.peloAzulImg = loadImage('assets/peloAzul.png');
         this.assets.peloBrancoImg = loadImage('assets/peloBranco.png');
-        this.assets.peloCinzaImg = loadImage('assets/peloCinza.png');
-        this.assets.peloRosaImg = loadImage('assets/peloRosa.png');
-        this.assets.peloVerdeImg = loadImage('assets/peloVerde.png');
         this.assets.bgImg = loadImage('assets/grass.png');
     }
 
