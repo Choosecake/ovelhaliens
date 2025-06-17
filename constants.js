@@ -12,4 +12,4 @@ const JUMPING_DOWN = 'jumping_down';
 const SHEEP_TYPES = ['padrao', 'alien', 'cafezinho', 'cervejinha', 'cogumelita', 'docinho', 'moranguinho', 'sorvetinho', 'trevosa'];
 
 let allFallingWool = [];
-const MAX_FALLING_WOOL_PIECES = 1;
+const MAX_FALLING_WOOL_PIECES = 2;

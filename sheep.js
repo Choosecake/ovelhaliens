@@ -8,7 +8,7 @@ class Sheep {
         this.state = APPEARING;
         this.pos = createVector(width / 2, height + 50);
         this.targetPos = createVector(random(50, width - 50), random(50, height - 150));
-        this.speed = 4.5;
+        this.speed = 9;
         this.woolHealth = floor(random(5, 10));
         this.initialWoolHealth = this.woolHealth;
         this.isSheared = false;
@@ -144,7 +144,7 @@ class Sheep {
     shear() {
         if (this.woolHealth > 0 && this.state === ACTIVE) {
             this.woolHealth--;
-            spawnFallingWool(this.pos.x, this.pos.y + this.jumpHeight, this.woolColor, this.bodySize); 
+            spawnFallingWool(this.pos.x, this.pos.y + this.jumpHeight, this.woolColor, this.bodySize * 1.5); 
             if (this.woolHealth <= 0) {
                 this.isSheared = true;
                 this.state = LEAVING;
