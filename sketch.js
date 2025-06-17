@@ -2,10 +2,14 @@ let gameManager;
 let assetLoader;
 let preRenderedBackground;
 let currentBackgroundColor;
+let tesouraFechada;
+let tesouraAberta;
 
 function preload() {
     assetLoader = new AssetLoader();
     assetLoader.preloadAssets();
+	tesouraAberta = assetLoader.getAsset('tesouraAbertaImg');
+	tesouraFechada = assetLoader.getAsset('tesouraFechadaImg');
 }
 
 function setup() {
@@ -37,15 +41,7 @@ function draw() {
         }
     }
 
-
-    if (!mouseIsPressed) {
-    	image(assetLoader.getAsset('tesouraAbertaImg'), mouseX - 25, mouseY - 25, 48, 48);
-	}
-	else {
-    	image(assetLoader.getAsset('tesouraFechadaImg'), mouseX - 25, mouseY - 25, 48, 48);
-
-	}
-
+    image(tesouraAberta, mouseX - 25, mouseY - 25, 48, 48);
 }
 
 function mouseClicked() {
