@@ -82,20 +82,20 @@ function preRenderBackground(colorToUse = null) {
     preRenderedBackground.noTint(); 
 }
 
-function spawnFallingWool(x, y, woolColor, sheepBodySize) {
+function spawnFallingWool(x, y, baseWoolImage, tintColor, sheepBodySize) { 
     const numWoolPieces = floor(random(3, 7)); 
     for (let i = 0; i < numWoolPieces; i++) {
         if (allFallingWool.length < MAX_FALLING_WOOL_PIECES) {
             let woolX = x + random(-sheepBodySize / 4, sheepBodySize / 4);
             let woolY = y + random(-sheepBodySize / 4, sheepBodySize / 4);
             let woolSize = random(sheepBodySize * 0.1, sheepBodySize * 0.2); 
-            allFallingWool.push(new FallingWool(woolX, woolY, woolColor, woolSize));
+            allFallingWool.push(new FallingWool(woolX, woolY, baseWoolImage, tintColor, woolSize)); 
         } else {
             allFallingWool.shift();
             let woolX = x + random(-sheepBodySize / 4, sheepBodySize / 4);
             let woolY = y + random(-sheepBodySize / 4, sheepBodySize / 4);
-            let woolSize = random(sheepBodySize * 0.3, sheepBodySize * 0.2); 
-            allFallingWool.push(new FallingWool(woolX, woolY, woolColor, woolSize));
+            let woolSize = random(sheepBodySize * 0.3, sheepBodySize * 0.2);
+            allFallingWool.push(new FallingWool(woolX, woolY, baseWoolImage, tintColor, woolSize));
         }
     }
 }
