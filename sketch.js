@@ -37,15 +37,15 @@ function draw() {
         }
     }
 
-    image(assetLoader.getAsset('tesouraAbertaImg'), mouseX - 25, mouseY - 25, 50, 50);
 
-	/*
-    if (mouseIsPressed) {
-        image(assetLoader.getAsset('tesouraFechadaImg'), mouseX, mouseY, 50, 50);
-    } else {
-        image(assetLoader.getAsset('tesouraAbertaImg'), mouseX, mouseY, 50, 50);
+    if (!mouseIsPressed) {
+    	image(assetLoader.getAsset('tesouraAbertaImg'), mouseX - 25, mouseY - 25, 48, 48);
 	}
-	*/
+	else {
+    	image(assetLoader.getAsset('tesouraFechadaImg'), mouseX - 25, mouseY - 25, 48, 48);
+
+	}
+
 }
 
 function mouseClicked() {
