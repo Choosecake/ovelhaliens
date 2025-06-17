@@ -14,7 +14,7 @@ function setup() {
     canvas.parent(container);
 
     pixelDensity(1);
-    frameRate(45);
+    frameRate(60);
     noCursor();
 
     gameManager = new GameManager(assetLoader);
