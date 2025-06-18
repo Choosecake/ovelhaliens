@@ -35,6 +35,7 @@ class GameManager {
         this.gameOver = false;
         this.score = 0;
         this.timer = INITIAL_TIMER;
+	startGameSnd.play();
 
         this.sheepArray = [];
         for (let i = 0; i < MAX_SHEEP; i++) {

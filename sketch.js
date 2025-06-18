@@ -2,14 +2,22 @@ let gameManager;
 let assetLoader;
 let preRenderedBackground;
 let currentBackgroundColor;
-let tesouraFechada;
-let tesouraAberta;
+let tesouraFechada, tesouraAberta;
+let behSnd, beh2Snd, beh3Snd, startGameSnd, shearSnd, shear2Snd, shear3Snd, shear4Snd;
 
 function preload() {
     assetLoader = new AssetLoader();
     assetLoader.preloadAssets();
-	tesouraAberta = assetLoader.getAsset('tesouraAbertaImg');
-	tesouraFechada = assetLoader.getAsset('tesouraFechadaImg');
+    tesouraAberta = assetLoader.getAsset('tesouraAbertaImg');
+    tesouraFechada = assetLoader.getAsset('tesouraFechadaImg');
+    behSnd = loadSound('assets/sounds/bah.mp3');
+    beh2Snd = loadSound('assets/sounds/bah2.mp3');
+    beh3Snd = loadSound('assets/sounds/bah3.mp3');
+    startGameSnd = loadSound('assets/sounds/startgame.mp3');
+    shearSnd = loadSound('assets/sounds/shear.mp3');
+    shear2Snd = loadSound('assets/sounds/shear2.mp3');
+    shear3Snd = loadSound('assets/sounds/shear3.mp3');
+    shear4Snd = loadSound('assets/sounds/shear4.mp3');
 }
 
 function setup() {
@@ -42,6 +50,16 @@ function draw() {
     }
 
     image(tesouraAberta, mouseX - 25, mouseY - 25, 48, 48);
+
+    /*U
+    if (!mouseIsPressed) {
+    }
+    else {
+        image(tesouraFechada, mouseX - 25, mouseY - 25, 48, 48);
+	return;
+    }
+    */
+
 }
 
 function mouseClicked() {
