@@ -7,14 +7,14 @@ Você não sabe (nem precisa saber) o que acontece com os pelos... nem com as ov
 
 ## 📌 Como executar o projeto
 
-Tens algumas opções simples:
+Algumas opções simples:
 
 1. **Live Server**  
-   Se estás a usar o Visual Studio Code, clica com o botão direito no arquivo `.html` e escolhe a opção **"Open with Live Server"**.  
+   Se você usa o Visual Studio Code,0 é clica com o botão direito no arquivo `.html` e escolher a opção **"Open with Live Server"**.  
    Isso abre o jogo no navegador com tudo funcionando direitinho.
 
 2. **Servidor local**  
-   Também podes abrir um servidor local qualquer apontando para a pasta root do projeto. Assim garantimos que tudo carrega como esperado.
+   Também é possível abrir um servidor local qualquer apontando para a pasta root do projeto. Assim garantimos que tudo carrega como esperado.
 
 ---
 
