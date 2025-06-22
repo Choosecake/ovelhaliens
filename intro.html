@@ -13,45 +13,41 @@
             overflow: hidden;
             font-family: "Knewave", sans-serif;
             display: flex;
-            justify-content: center; /* Centraliza horizontalmente */
-            align-items: center; /* Centraliza verticalmente */
+            justify-content: center; 
+            align-items: center; 
             height: 100vh;
             background-color: #000;
             background-image: url('assets/fundo2.png');
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            flex-direction: column; /* Alinha a logo e o container verticalmente */
+            flex-direction: column;
         }
 
         .logo {
-            max-width: 100%; /* Permite que a logo ocupe até 100% da largura da tela */
-            max-height: 350px; /* Altura máxima da logo */
-            height: auto; /* Mantém a proporção da imagem */
+            max-width: 100%; 
+            max-height: 350px; 
+            height: auto; 
             margin-bottom: 5px; 
-            margin-top: -200px; /* Ou o valor que você definiu para a posição ideal */
+            margin-top: -200px; 
         }
 
         .container {
             display: flex;
-            flex-direction: row; /* **MODIFICADO**: Botões lado a lado */
-            align-items: center; /* Centraliza os botões verticalmente dentro da linha */
-            justify-content: center; /* **NOVO**: Centraliza os botões horizontalmente na linha */
-            gap: 25px; /* **AUMENTADO**: Espaçamento maior entre os botões lado a lado */
-            padding: 0.5rem 2rem; 
-            
-            /* Removi o background-color, border-radius e box-shadow comentados para evitar confusão. */
-            /* Se quiser um painel para os botões, adicione-os aqui novamente. */
-            
+            flex-direction: row; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 25px; 
+            padding: 0.5rem 2rem;     
             box-sizing: border-box;
-            /* overflow: hidden; (pode ser removido se não houver conteúdo que possa estourar) */
+
         }
 
         .button {
             padding: 1.2rem 3rem;
             font-size: 1.8rem;
             font-weight: bold;
-            color: #6a4a3c; /* Cor marrom para o texto dos botões */
+            color: #6a4a3c;
             border: none;
             border-radius: 0.75rem;
             cursor: pointer;
@@ -60,7 +56,7 @@
             text-decoration: none;
             display: inline-block;
             width: auto;
-            white-space: nowrap; /* Evita que o texto do botão quebre linha */
+            white-space: nowrap; 
         }
 
         .button:hover {
@@ -74,19 +70,19 @@
         }
 
         .play-button {
-            background-color: #ffcc99; /* Laranja pastel */
+            background-color: #ffcc99; 
         }
 
         .play-button:hover {
-            background-color: #ffb380; /* Tom mais escuro de laranja pastel no hover */
+            background-color: #ffb380; 
         }
 
         .menu-button {
-            background-color: #ffcc99; /* Laranja pastel */
+            background-color: #ffcc99;
         }
 
         .menu-button:hover {
-            background-color: #ffb380; /* Tom mais escuro de laranja pastel no hover */
+            background-color: #ffb380; 
         }
 
         .modal {
