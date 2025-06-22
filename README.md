@@ -26,7 +26,6 @@ Tens algumas opções simples:
 - Cada clique é um corte de pelo... corta o máximo possível para acumular pontos!
 - O objetivo? Tosar o maior número de ovelhinhas dentro do tempo limite!
 
-Apenas aproveita o momento... sem pensar muito no destino dos pelos 😈
 
 ---
 
