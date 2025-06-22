@@ -62,7 +62,7 @@ class GameManager {
     endGame() {
         this.gameOver = true;
         clearInterval(this.gameInterval);
-        this.finalScoreDisplay.html(`Your Score: ${this.score}`);
+        this.finalScoreDisplay.html(`Pontuação: ${this.score}`);
         this.gameOverOverlay.removeClass('hidden');
     }
 
@@ -72,11 +72,11 @@ class GameManager {
     }
 
     updateScoreDisplay() {
-        this.scoreDisplay.html(`Score: ${this.score}`);
+        this.scoreDisplay.html(`Pontuação: ${this.score}`);
     }
 
     updateTimerDisplay() {
-        this.timerDisplay.html(`Time: ${max(0, this.timer)}`);
+        this.timerDisplay.html(`Tempo: ${max(0, this.timer)}`);
     }
 
     updateGame() {
