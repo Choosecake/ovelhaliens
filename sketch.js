@@ -43,22 +43,23 @@ function draw() {
     for (let i = allFallingWool.length - 1; i >= 0; i--) {
         let wool = allFallingWool[i];
         wool.update();
-        wool.display();
         if (wool.isFaded()) {
             allFallingWool.splice(i, 1);
         }
     }
 
-    image(tesouraAberta, mouseX - 25, mouseY - 25, 48, 48);
+    for (let i = 0; i < allFallingWool.length; i++) {
+        allFallingWool[i].display();
+    }
 
-    /*U
-    if (!mouseIsPressed) {
-    }
-    else {
-        image(tesouraFechada, mouseX - 25, mouseY - 25, 48, 48);
-	return;
-    }
-    */
+    //image(assetLoader.getAsset('tesouraAbertaImg'), mouseX - 25, mouseY - 25, 50, 50);
+
+	
+    if (mouseIsPressed) {
+        image(assetLoader.getAsset('tesouraFechadaImg'), mouseX, mouseY, 50, 50);
+    } else {
+        image(assetLoader.getAsset('tesouraAbertaImg'), mouseX, mouseY, 50, 50);
+    }	
 
 }
 
