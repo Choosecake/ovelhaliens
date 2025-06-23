@@ -1,7 +1,8 @@
 class FallingWool {
-    constructor(x, y, woolColor, size) {
+    constructor(x, y, baseWoolImage, tintColor, size) {
         this.pos = createVector(x, y);
-        this.woolColor = woolColor;
+		this.baseWoolImage = baseWoolImage;
+        this.tintColor = tintColor;
         this.size = size;
         this.alpha = 255;
         this.velocity = createVector(random(-1, 1), random(1, 3));
@@ -19,14 +20,15 @@ class FallingWool {
         this.rotation += this.rotationSpeed;
     }
 
-    display() {
+	display() {
         push();
-        tint(255, this.alpha);
-        imageMode(CENTER);
         translate(this.pos.x, this.pos.y);
         rotate(this.rotation);
-        image(this.woolColor, 0, 0, this.size, this.size);
-        pop();
+        
+        tint(this.tintColor.levels[0], this.tintColor.levels[1], this.tintColor.levels[2], this.alpha);
+        
+        image(this.baseWoolImage, 0, 0, this.size, this.size);
+        pop(); 
     }
 
     isFaded() {

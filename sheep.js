@@ -19,7 +19,8 @@ class Sheep {
         this.flipped = random() < 0.5;
 
         this.sheepType = SHEEP_TYPES[floor(random(0, SHEEP_TYPES.length))];
-        this.woolColor = this.assetLoader.getAsset('peloBrancoImg');
+	this.baseFallingWoolImage = this.assetLoader.getAsset('peloBrancoImg');
+	this.woolColorForFallingPieces = color(255);
 
         this.jumpHeight = 0;
         this.initialJumpY = 0;
@@ -34,38 +35,47 @@ class Sheep {
             case 'padrao':
                 this.image = this.assetLoader.getAsset('ovelhaPadraoImg');
                 this.peladaImage = this.assetLoader.getAsset('ovelhaPeladaImg');
+		this.woolColorForFallingPieces = color(255);
                 break;
             case 'alien':
                 this.image = this.assetLoader.getAsset('ovelhaAlienImg');
                 this.peladaImage = this.assetLoader.getAsset('alienPeladaImg');
+		this.woolColorForFallingPieces = color(51, 204, 51);
                 break;
             case 'cafezinho':
                 this.image = this.assetLoader.getAsset('ovelhaCafezinhoImg');
                 this.peladaImage = this.assetLoader.getAsset('cafezinhoPeladaImg');
+		this.woolColorForFallingPieces = color(255);
                 break;
             case 'cervejinha':
                 this.image = this.assetLoader.getAsset('ovelhaCervejinhaImg');
                 this.peladaImage = this.assetLoader.getAsset('ovelhaPeladaImg');
+		this.woolColorForFallingPieces = color(255, 255, 0);
                 break;
             case 'cogumelita':
                 this.image = this.assetLoader.getAsset('ovelhaCogumelitaImg');
                 this.peladaImage = this.assetLoader.getAsset('ovelhaPeladaImg');
+		this.woolColorForFallingPieces = color(255);
                 break;
             case 'docinho':
                 this.image = this.assetLoader.getAsset('ovelhaDocinhoImg');
                 this.peladaImage = this.assetLoader.getAsset('ovelhaPeladaImg');
+		this.woolColorForFallingPieces = color(255, 0, 191);
                 break;
             case 'moranguinho':
                 this.image = this.assetLoader.getAsset('ovelhaMoranguinhoImg');
                 this.peladaImage = this.assetLoader.getAsset('moranguinhoPeladaImg');
+		this.woolColorForFallingPieces = color(255, 0, 60);
                 break;
             case 'sorvetinho':
                 this.image = this.assetLoader.getAsset('ovelhaSorvetinhoImg');
                 this.peladaImage = this.assetLoader.getAsset('ovelhaPeladaImg');
+		this.woolColorForFallingPieces = color(255, 190, 0);
                 break;
             case 'trevosa':
                 this.image = this.assetLoader.getAsset('ovelhaTrevosaImg');
                 this.peladaImage = this.assetLoader.getAsset('ovelhaPeladaImg');
+		this.woolColorForFallingPieces = color(0);
                 break;
         }
     }
@@ -102,7 +112,7 @@ class Sheep {
             if (this.canJump && this.timeSinceLastJump >= this.jumpInterval) {
                 this.startJump();
                 this.timeSinceLastJump = 0;
-                this.jumpInterval = random(180, 300);
+                this.jumpInterval = random(100, 250);
             }
 
             if (this.state === JUMPING_UP || this.state === JUMPING_DOWN) {
@@ -144,11 +154,38 @@ class Sheep {
     shear() {
         if (this.woolHealth > 0 && this.state === ACTIVE) {
             this.woolHealth--;
-            spawnFallingWool(this.pos.x, this.pos.y + this.jumpHeight, this.woolColor, this.bodySize); 
+            spawnFallingWool(this.pos.x, this.pos.y + this.jumpHeight, this.baseFallingWoolImage, this.woolColorForFallingPieces, this.bodySize * 1.25); 
+	    let shearSound = floor(random(0, 4));
+	    switch (shearSound) {
+	        case 0:
+		    shearSnd.play();
+		    break;
+		case 1:
+		    shear2Snd.play();
+		    break;
+		case 2:
+		    shear3Snd.play();
+		    break;
+		case 3:
+		    shear4Snd.play();
+		    break;
+	    }
             if (this.woolHealth <= 0) {
                 this.isSheared = true;
                 this.state = LEAVING;
                 this.displaySize = this.bodySize;
+		let behSound = floor(random(0, 3));
+		switch (behSound) {
+		    case 0:
+			behSnd.play();
+			break;
+		    case 1:
+			beh2Snd.play();
+			break;
+		    case 2:
+			beh3Snd.play();
+			break;
+		}
                 return true;
             }
         }
