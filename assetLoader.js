@@ -21,8 +21,17 @@ class AssetLoader {
         this.assets.moranguinhoPeladaImg = loadImage('assets/moranguinhoPelada.png');
         this.assets.peloBrancoImg = loadImage('assets/peloBranco.png');
         this.assets.bgImg = loadImage('assets/grass.png');
-    }
 
+        this.assets.alienImg = loadImage('assets/alien.png');
+        this.assets.basicaImg = loadImage('assets/basica.png');
+        this.assets.cafezinhoImg = loadImage('assets/cafezinho.png');
+        this.assets.cervejinhaImg = loadImage('assets/cervejinha.png');
+        this.assets.cogumelitoImg = loadImage('assets/cogumelito.png');
+        this.assets.docinhoImg = loadImage('assets/docinho.png');
+        this.assets.moranguinhoImg = loadImage('assets/moranguinho.png');
+        this.assets.sorvetinhoImg = loadImage('assets/sorvetinho.png');
+        this.assets.trevosinhoImg = loadImage('assets/trevosinho.png');
+    }
     getAsset(name) {
         return this.assets[name];
     }

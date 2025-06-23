@@ -27,7 +27,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #000000; 
+            background-color: #ffcc99; 
         }
         canvas {
             display: block;
@@ -96,9 +96,106 @@
             transform: translateY(0);
             box-shadow: none;
         }
-        /* Hidden utility class for overlays */
         .hidden {
             display: none;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            position: relative;
+            animation: fadeIn 0.3s ease-out; 
+        }
+
+        .modal-content h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 1rem;
+        }
+
+        .modal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+            gap: 1rem;
+            justify-items: center;
+        }
+
+        .collection-item {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            transition: opacity 0.3s ease-in-out;
+            text-align: center;
+        }
+
+        .collection-item img {
+            max-width: 100px;
+            max-height: 100px;
+            object-fit: contain;
+            margin: 0 auto; 
+        }
+        
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-button:hover {
+            color: #666;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .conquered-items-display {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+            width: 80%; 
+        }
+        .conquered-items-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem; 
+            margin-top: 0.5rem;
+        }
+        .conquered-item-thumbnail {
+            width: 40px; 
+            height: 40px;
+            object-fit: contain;
+            border-radius: 0.25rem;
+            background-color: rgba(255, 255, 255, 0.2); 
         }
     </style>
 </head>
@@ -114,9 +211,25 @@
             <button id="start-button">Iniciar Jogo</button>
         </div>
         <div id="game-over-overlay" class="game-overlay hidden">
-            <h1>Game Over!</h1>
+            <h1>Acabou o tempo!</h1>
             <p id="final-score">Pontuação: 0</p>
+
+            <div class="conquered-items-display">
+                <p>Itens Conquistados pela Pontuação:</p>
+                <div id="conquered-items-grid" class="conquered-items-grid">
+                    </div>
+            </div>
             <button id="restart-button">Jogar novamente</button>
+            <button id="collection-button" class="mt-4 bg-blue-500 hover:bg-blue-600">Ver Coleção</button> 
+        </div>
+    </div>
+
+    <div id="collection-modal" class="modal hidden">
+        <div class="modal-content">
+            <button id="close-collection-modal" class="close-button">&times;</button>
+            <h2>Minha Coleção de Ovelhaliens</h2>
+            <div id="collection-content" class="modal-grid">
+                </div>
         </div>
     </div>
 </body>
