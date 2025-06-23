@@ -7,6 +7,7 @@ class GameManager {
         this.gameOver = false;
         this.gameInterval = null;
         this.sheepArray = [];
+        this.highScore = 0; // Nova propriedade para armazenar a pontuação máxima
 
         this.scoreDisplay = null;
         this.timerDisplay = null;
@@ -35,7 +36,7 @@ class GameManager {
         this.gameOver = false;
         this.score = 0;
         this.timer = INITIAL_TIMER;
-	startGameSnd.play();
+        startGameSnd.play();
 
         this.sheepArray = [];
         for (let i = 0; i < MAX_SHEEP; i++) {
@@ -62,7 +63,11 @@ class GameManager {
     endGame() {
         this.gameOver = true;
         clearInterval(this.gameInterval);
-        this.finalScoreDisplay.html(`Pontuação: ${this.score}`);
+        // Verifica se a pontuação atual é maior que a pontuação máxima registrada
+        if (this.score > this.highScore) {
+            this.highScore = this.score; // Atualiza a pontuação máxima
+        }
+        this.finalScoreDisplay.html(`Maior Pontuação: ${this.highScore}`); // Exibe a maior pontuação
         this.gameOverOverlay.removeClass('hidden');
     }
 
@@ -117,4 +122,3 @@ class GameManager {
         }
     }
 }
-
