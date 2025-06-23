@@ -25,6 +25,7 @@ Algumas opções simples:
 - **Clique nelas o mais rápido que conseguir** para tosá-las antes que o tempo acabe!
 - Cada clique é um corte de pelo... corta o máximo possível para acumular pontos!
 - O objetivo? Tosar o maior número de ovelhinhas dentro do tempo limite!
+- Você ganha prêmios/itens conforme as pontuações forem alcançadas.
 
 
 ---
