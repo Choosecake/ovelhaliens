@@ -9,7 +9,7 @@ class GameManager {
         this.sheepArray = [];
         this.highScore = 0;
         this.collectedItems = new Set();
-        this.newlyConqueredItemsThisRound = new Set(); // NOVO: Para itens conquistados APENAS nesta rodada
+        this.newlyConqueredItemsThisRound = new Set(); 
 
         this.scoreDisplay = null;
         this.timerDisplay = null;
@@ -65,7 +65,7 @@ class GameManager {
         this.gameOverOverlay.addClass('hidden');
         this.collectionButton.addClass('hidden');
         this.conqueredItemsGrid.html('');
-        this.newlyConqueredItemsThisRound.clear(); // NOVO: Limpa os novos itens desta rodada
+        this.newlyConqueredItemsThisRound.clear(); 
 
         if (this.gameInterval) {
             clearInterval(this.gameInterval);
@@ -83,20 +83,18 @@ class GameManager {
         this.gameOver = true;
         clearInterval(this.gameInterval);
 
-        const oldHighScore = this.highScore; // Guarda a high score anterior
+        const oldHighScore = this.highScore; 
 
         if (this.score > this.highScore) {
             this.highScore = this.score;
         }
 
-        // NOVO: Verifica e adiciona *apenas* novos itens conquistados nesta rodada
         COLLECTION_ITEMS.forEach(item => {
             if (this.highScore >= item.scoreRequired) {
-                // Se o item não estava na coleção ANTES e agora está, é um item novo para esta rodada
                 if (!this.collectedItems.has(item.name)) {
                     this.newlyConqueredItemsThisRound.add(item.name);
                 }
-                this.collectedItems.add(item.name); // Adiciona à coleção geral
+                this.collectedItems.add(item.name); 
             }
         });
 
@@ -204,12 +202,11 @@ class GameManager {
     displayConqueredItemsOnGameOver() {
         this.conqueredItemsGrid.html('');
 
-        // NOVO: Usa a lista de itens *novos* conquistados nesta rodada
         const newConqueredThisRound = COLLECTION_ITEMS.filter(item => this.newlyConqueredItemsThisRound.has(item.name));
 
         if (newConqueredThisRound.length > 0) {
-            const heading = createP('Novos Itens Conquistados:'); // NOVO: Título para os novos itens
-            heading.addClass('text-lg font-bold text-white mb-2'); // Tailwind classes
+            const heading = createP('Novos Itens Conquistados:'); 
+            heading.addClass('text-lg font-bold text-white mb-2'); 
             this.conqueredItemsGrid.child(heading);
 
             newConqueredThisRound.forEach(item => {
