@@ -10,21 +10,11 @@ Você não sabe (nem precisa saber) o que acontece com os pelos... nem com as ov
 Algumas opções simples:
 
 1. **Live Server**  
-   Se você usa o Visual Studio Code,0 é clica com o botão direito no arquivo `.html` e escolher a opção **"Open with Live Server"**.  
+   Se você usa o Visual Studio Code, é só clicar com o botão direito no arquivo `.html` e escolher a opção **"Open with Live Server"**.  
    Isso abre o jogo no navegador com tudo funcionando direitinho.
 
 2. **Servidor local**  
    Também é possível abrir um servidor local qualquer apontando para a pasta root do projeto. Assim garantimos que tudo carrega como esperado.
-=======
-Tens algumas opções simples:
-
-1. **Live Server (recomendado)**  
-   Se estás a usar o Visual Studio Code, clica com o botão direito no arquivo `.html` e escolhe a opção **"Open with Live Server"**.  
-   Isso abre o jogo no navegador com tudo funcionando direitinho.
-
-2. **Servidor local (outra opção válida)**  
-   Também podes abrir um servidor local qualquer apontando para a pasta root do projeto. Assim garantimos que tudo carrega como esperado.
-
 ---
 
 ## 🎮 Como jogar
